@@ -1,0 +1,21 @@
+service: school-ticket-sales-server
+provider:
+  name: aws
+  runtime: java8
+  stage: dev
+  region: us-east-1
+
+package:
+  artifact: target/server-dev.jar
+
+functions:
+  hello:
+    handler: io.benaychh.ticketsales.Handler
+    events:
+    - http:
+        path: hello
+        method: get
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
