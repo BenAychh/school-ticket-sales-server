@@ -6,5 +6,6 @@ phases:
       - npm install -g serverless
   build:
     commands:
-      - mvn package
-      - serverless deploy --stage staging
+      - ./devops test
+      - ./devops verify
+      - serverless deploy
