@@ -2,7 +2,7 @@ service: school-ticket-sales-server
 provider:
   name: aws
   runtime: java8
-  stage: prod
+  stage: staging
   region: us-east-1
 
 package:

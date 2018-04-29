@@ -6,10 +6,12 @@ function main()
         unitTest
     elif [ "$1" == "package" ]; then
         package
-    elif [ "$1" == "deploy" ]; then
-        deploy
+    elif [ "$1" == "deploy-staging" ]; then
+        deploy_staging
     elif [ "$1" == "e2e" ]; then
         e2eTest
+    elif [ "$1" == "deploy-prod" ]; then
+        deploy_staging
     fi
 }
 
@@ -24,9 +26,14 @@ function package()
     mvn verify
 }
 
-function deploy()
+function deploy_staging()
 {
     serverless deploy
+}
+
+function deploy_prod()
+{
+    serverless deploy --stage prod
 }
 
 function e2eTest()

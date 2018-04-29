@@ -3,8 +3,13 @@ version: 0.2
 phases:
   install:
     commands:
+      - ls -la
       - npm install -g serverless
+      - npm install -g newman
+      - chmod +x devops.sh
   build:
     commands:
-      - mvn verify
-      - serverless deploy
+      - ./devops.sh package
+      - ./devops.sh deploy-staging
+      - ./devops.sh e2e
+      - ./devops.sh deploy-prod
