@@ -27,17 +27,11 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://4zsnhyz8f0.execute-api.us-east-1.amazonaws.com/prod/hello",
-					"protocol": "https",
+					"raw": "{{url}}/hello",
 					"host": [
-						"4zsnhyz8f0",
-						"execute-api",
-						"us-east-1",
-						"amazonaws",
-						"com"
+						"{{url}}"
 					],
 					"path": [
-						"prod",
 						"hello"
 					]
 				},

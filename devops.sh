@@ -38,7 +38,7 @@ function deploy_prod()
 
 function e2eTest()
 {
-    newman run e2e/schoolticketsalesserver.postman_collection.json
+    newman run e2e/schoolticketsalesserver.postman_collection.json --global-var "url=https://xkmi9ww5m1.execute-api.us-east-1.amazonaws.com/staging"
 }
 
 main $1
