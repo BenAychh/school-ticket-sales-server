@@ -2,11 +2,11 @@ service: school-ticket-sales-server
 provider:
   name: aws
   runtime: java8
-  stage: dev
+  stage: prod
   region: us-east-1
 
 package:
-  artifact: target/server-dev.jar
+  artifact: target/ticket-sales-lambda.jar
 
 functions:
   hello:

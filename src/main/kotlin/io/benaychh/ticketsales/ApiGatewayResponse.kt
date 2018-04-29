@@ -12,13 +12,6 @@ class ApiGatewayResponse(
         val headers: Map<String, String>? = Collections.emptyMap(),
         val isBase64Encoded: Boolean = false
 ) {
-    private constructor(builder: Builder) : this(
-            builder.statusCode,
-            builder.rawBody,
-            builder.headers,
-            builder.base64Encoded
-    )
-
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
     }

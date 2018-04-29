@@ -10,6 +10,8 @@ class Handler:RequestHandler<Map<String, Any>, ApiGatewayResponse> {
     override fun handleRequest(input:Map<String, Any>, context:Context): ApiGatewayResponse {
         BasicConfigurator.configure()
 
+        LOG.info(input)
+
         val responseBody = Response("Go Serverless v1.x! Your Kotlin function executed successfully!", input)
         return ApiGatewayResponse.build {
             statusCode = 200
