@@ -1,33 +1,36 @@
 package io.benaychh.ticketsales
-import com.amazonaws.services.lambda.runtime.*
-
+import com.amazonaws.services.lambda.runtime.Client
+import com.amazonaws.services.lambda.runtime.ClientContext
+import com.amazonaws.services.lambda.runtime.CognitoIdentity
+import com.amazonaws.services.lambda.runtime.Context
+import com.amazonaws.services.lambda.runtime.LambdaLogger
 
 fun contextFactory(
-        awsRequestId: String = "aws-request-id",
-        logGroupName: String = "log-group-name",
-        logStreamName: String = "log-stream-name",
-        functionName: String = "function-name",
-        functionVersion: String = "function-version",
-        invokedFunctionArn: String = "invoked-function-arn",
-        cognitoIdentityId: String = "cognito-identity-id",
-        cognitoIdentityPoolId: String = "cognito-identity-pool-id",
-        clientContextInstallationId: String = "client-installation-id",
-        clientContextAppTitle: String = "client-app-title",
-        clientContextAppVersionName: String = "client-app-version-name",
-        clientContextAppVersionCode: String = "client-app-version-code",
-        clientContextAppPackageName: String = "client-app-package-name",
-        clientCustom: Map<String, String> = HashMap<String, String>(),
-        clientEnvironment: Map<String, String> = HashMap<String, String>(),
-        remainingTimeInMillis: Int = 1000 * 60,
-        memoryLimitInMb: Int = 500,
-        loggingFunction: (line: String) -> Unit = { string -> println(string)}
-        ): Context {
-    val cognitoIdentity = object: CognitoIdentity {
-        override fun getIdentityId(): String = cognitoIdentityId;
+    awsRequestId: String = "aws-request-id",
+    logGroupName: String = "log-group-name",
+    logStreamName: String = "log-stream-name",
+    functionName: String = "function-name",
+    functionVersion: String = "function-version",
+    invokedFunctionArn: String = "invoked-function-arn",
+    cognitoIdentityId: String = "cognito-identity-id",
+    cognitoIdentityPoolId: String = "cognito-identity-pool-id",
+    clientContextInstallationId: String = "client-installation-id",
+    clientContextAppTitle: String = "client-app-title",
+    clientContextAppVersionName: String = "client-app-version-name",
+    clientContextAppVersionCode: String = "client-app-version-code",
+    clientContextAppPackageName: String = "client-app-package-name",
+    clientCustom: Map<String, String> = HashMap<String, String>(),
+    clientEnvironment: Map<String, String> = HashMap<String, String>(),
+    remainingTimeInMillis: Int = 1000 * 60,
+    memoryLimitInMb: Int = 500,
+    loggingFunction: (line: String) -> Unit = { string -> println(string) }
+): Context {
+    val cognitoIdentity = object : CognitoIdentity {
+        override fun getIdentityId(): String = cognitoIdentityId
         override fun getIdentityPoolId(): String = cognitoIdentityPoolId
     }
 
-    val clientContextClient = object: Client {
+    val clientContextClient = object : Client {
         override fun getInstallationId(): String = clientContextInstallationId
         override fun getAppTitle(): String = clientContextAppTitle
         override fun getAppVersionName(): String = clientContextAppVersionName
@@ -35,17 +38,17 @@ fun contextFactory(
         override fun getAppPackageName(): String = clientContextAppPackageName
     }
 
-    val clientContext = object: ClientContext {
+    val clientContext = object : ClientContext {
         override fun getClient(): Client = clientContextClient
         override fun getCustom(): Map<String, String> = clientCustom
         override fun getEnvironment(): Map<String, String> = clientEnvironment
     }
 
-    val lambdaLogger = object: LambdaLogger {
+    val lambdaLogger = object : LambdaLogger {
         override fun log(line: String) { loggingFunction(line) }
     }
 
-    return object: Context {
+    return object : Context {
         override fun getAwsRequestId(): String = awsRequestId
         override fun getLogGroupName(): String = logGroupName
         override fun getLogStreamName(): String = logStreamName

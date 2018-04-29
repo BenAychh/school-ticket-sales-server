@@ -4,10 +4,10 @@ import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
 import org.apache.log4j.BasicConfigurator
 import org.apache.log4j.Logger
-import java.util.*
+import java.util.Collections
 
-class Handler:RequestHandler<Map<String, Any>, ApiGatewayResponse> {
-    override fun handleRequest(input:Map<String, Any>, context:Context): ApiGatewayResponse {
+class Handler : RequestHandler<Map<String, Any>, ApiGatewayResponse> {
+    override fun handleRequest(input: Map<String, Any>, context: Context): ApiGatewayResponse {
         BasicConfigurator.configure()
 
         LOG.info(input)

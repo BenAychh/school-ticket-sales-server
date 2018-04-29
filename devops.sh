@@ -15,12 +15,13 @@ function main()
 
 function unitTest()
 {
+    mvn antrun:run@ktlint
     mvn test
 }
 
 function package()
 {
-    mvn package
+    mvn verify
 }
 
 function deploy()
@@ -32,4 +33,5 @@ function e2eTest()
 {
     newman run e2e/hello.json
 }
+
 main $1

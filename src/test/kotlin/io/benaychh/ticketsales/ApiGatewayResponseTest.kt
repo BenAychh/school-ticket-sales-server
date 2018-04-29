@@ -1,9 +1,9 @@
 package io.benaychh.ticketsales
 
-import org.junit.jupiter.api.Test
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
-import java.util.*
+import org.junit.jupiter.api.Test
+import java.util.Collections
 
 internal class ApiGatewayResponseTest {
 
@@ -28,7 +28,6 @@ internal class ApiGatewayResponseTest {
         fun `it defaults to false for base64 encoding`() {
             assertThat(ApiGatewayResponse().isBase64Encoded).isFalse()
         }
-
     }
 
     @Nested
@@ -62,7 +61,6 @@ internal class ApiGatewayResponseTest {
         fun `it can set base64Encoded`() {
             assertThat(ApiGatewayResponse.build { base64Encoded = true }.isBase64Encoded).isTrue()
         }
-
 
         @Test
         fun `it sets the body as a raw string if rawBody is not null`() {
@@ -112,7 +110,6 @@ internal class ApiGatewayResponseTest {
 
         @Test
         fun `it sets the body as a binary if the other bodies are null and binaryBody is not`() {
-
         }
     }
 }

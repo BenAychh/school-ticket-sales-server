@@ -4,13 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.log4j.Logger
 import java.nio.charset.StandardCharsets
-import java.util.*
+import java.util.Collections
+import java.util.Base64
 
 class ApiGatewayResponse(
-        val statusCode: Int = 200,
-        var body: String? = null,
-        val headers: Map<String, String>? = Collections.emptyMap(),
-        val isBase64Encoded: Boolean = false
+    val statusCode: Int = 200,
+    var body: String? = null,
+    val headers: Map<String, String>? = Collections.emptyMap(),
+    val isBase64Encoded: Boolean = false
 ) {
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
@@ -32,8 +33,7 @@ class ApiGatewayResponse(
 
             if (rawBody != null) {
                 body = rawBody as String
-            }
-            else if (objectBody != null) {
+            } else if (objectBody != null) {
                 try {
                     body = objectMapper.writeValueAsString(objectBody)
                 } catch (e: JsonProcessingException) {
