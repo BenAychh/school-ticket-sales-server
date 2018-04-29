@@ -27,17 +27,17 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://867zmy4evl.execute-api.us-east-1.amazonaws.com/staging/hello",
+					"raw": "https://4zsnhyz8f0.execute-api.us-east-1.amazonaws.com/prod/hello",
 					"protocol": "https",
 					"host": [
-						"867zmy4evl",
+						"4zsnhyz8f0",
 						"execute-api",
 						"us-east-1",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"staging",
+						"prod",
 						"hello"
 					]
 				},
