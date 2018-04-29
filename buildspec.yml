@@ -6,6 +6,5 @@ phases:
       - npm install -g serverless
   build:
     commands:
-      - ./devops test
-      - ./devops verify
+      - ./devops.sh verify
       - serverless deploy
