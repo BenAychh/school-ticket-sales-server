@@ -38,7 +38,7 @@ function deploy_prod()
 
 function e2eTest()
 {
-    newman run e2e/hello.json
+    newman run e2e/schoolticketsalesserver.postman_collection.json
 }
 
 main $1
